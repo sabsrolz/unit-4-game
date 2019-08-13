@@ -19,6 +19,8 @@
       <h1 class="col-md-5">Cyrstals Collector Game!</h1>
     </header>
 
+    <div id="test"></div>
+
     <p class="m-4 instructions col-md-8">Instructions go here</p>
 
     <div class="m-4 game_score row">
@@ -31,21 +33,21 @@
     </div>
 
     <div class="m-4 crystals row">
-      <div class="crystal_1 col-md-2">
+      <div class="crystal_btn col-md-2" id="crystal_1">
         <img class="img-thumbnail" src="assets/images/crystal1.PNG" />
-        <h3 class="point1 text-center"></h3>
+        <h3 id="point1" class="text-center"></h3>
       </div>
-      <div class="crystal_2 col-md-2">
+      <div class="crystal_btn col-md-2" id="crystal_2">
         <img class="img-thumbnail" src="assets/images/crystal2.PNG" />
-        <h3 class="point1 text-center"></h3>
+        <h3 id="point2" class="text-center"></h3>
       </div>
-      <div class="crystal_3 col-md-2">
+      <div class="crystal_btn col-md-2" id="crystal_3">
         <img class="img-thumbnail" src="assets/images/crystal3.PNG" />
-        <h3 class="point1 text-center"></h3>
+        <h3 id="point3" class="text-center"></h3>
       </div>
-      <div class="crystal_4 col-md-2">
+      <div class="crystal_btn col-md-2" id="crystal_4">
         <img class="img-thumbnail" src="assets/images/crystal4.PNG" />
-        <h3 class="point1 text-center"></h3>
+        <h3 id="point4" class="text-center"></h3>
       </div>
     </div>
 
@@ -57,7 +59,6 @@
         <div class="col-md-4">Current Score:</div>
       </div>
     </div>
-
     <script src="assets/javascript/game.js"></script>
   </body>
 </html>
