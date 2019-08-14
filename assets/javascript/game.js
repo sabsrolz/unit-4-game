@@ -11,12 +11,12 @@ let losses = 0;
 
 //function that generates goal
 function goal_gen(lower, upper) {
-  scoreGoal = Math.floor(lower + Math.random() * upper) + 1;
+  scoreGoal = Math.floor(lower + Math.random() * upper);
   $(".goal").text("Score Goal: " + scoreGoal);
 }
 
 function points_gen(lower, upper) {
-  points = Math.floor(lower + Math.random() * upper) + 1;
+  points = Math.floor(lower + Math.random() * upper);
   return points;
 }
 
