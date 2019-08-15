@@ -63,7 +63,7 @@ $(document).ready(function() {
       $(".winsNum").text("Wins: " + wins);
       // totalScore = 0;
       // $(".current_score").text("Current Score: " + totalScore);
-      $(".message_round").text("You won! Press reset game to try again");
+      $(".message_round").text("You won! Press reset game to play again");
       //crystals_reset();
     }
     if (total > goal) {
@@ -94,6 +94,7 @@ $(document).ready(function() {
   //points_gen(1, 12);
 
   $(".crystal_btn").on("click", function() {
+    $(".message_round").text("Game in progress");
     points_gen(1, 12);
     var score_crystal = $(this).attr("point");
 
