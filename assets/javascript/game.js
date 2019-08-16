@@ -1,15 +1,12 @@
 $(document).ready(function() {
   //declare variables
-  let scoreGoal = 0;
-  let points = 0;
-  let points1;
-  let points2;
-  let points3;
-  let points4;
-  let totalScore = 0;
+  let scoreGoal = 0; //randomly generated number of points that player is trying to reach
+  let points = 0; //randomly generated number of points assigned to each crystal for every round
+  let totalScore = 0; //score of player in current round
   let wins = 0;
   let losses = 0;
 
+  //object that stores number of points for each crystal
   let crystals = {
     crystal1: points_gen(1, 12),
     crystal2: points_gen(1, 12),
@@ -17,7 +14,7 @@ $(document).ready(function() {
     crystal4: points_gen(1, 12)
   };
 
-  //function that generates goal
+  //function that generates goal for every round
   function goal_gen(lower, upper) {
     scoreGoal = Math.floor(Math.random() * (upper - lower)) + lower;
     $(".goal").text("Score Goal: " + scoreGoal);
@@ -37,6 +34,7 @@ $(document).ready(function() {
       crystal3: points_gen(1, 12),
       crystal4: points_gen(1, 12)
     };
+    //assign attribute "point" to crystal buttons
     $("#crystal_1").attr("point", crystals.crystal1);
     $("#crystal_2").attr("point", crystals.crystal2);
     $("#crystal_3").attr("point", crystals.crystal3);
@@ -45,67 +43,64 @@ $(document).ready(function() {
     console.log(crystals);
   }
 
+  //click function related to button that resets game
   $(".reset_button").on("click", function next_round() {
-    $(".message_round").text("");
-    //$(".reset_button").html("<button>Reset Game</button>");
-    goal_gen(18, 120);
-    totalScore = 0;
+    $(".message_round").text(""); //empties current game message
+    goal_gen(18, 120); //generates new goal
+    totalScore = 0; //resets score
     $(".current_score").text("Current Score: " + totalScore);
-    crystals_reset();
+    crystals_reset(); //resets game parameters
+    $(".reset_button").hide(); //hides reset button
   });
 
   //function that determines status of game
+  //winning condition
   function game_status(total, goal) {
     if (total === goal) {
       $(".current_score").text("Current Score: " + total);
-      $(".message").text("You win :)");
+      $(".message").text("You win :)"); //display winning message
       wins = wins + 1;
       $(".winsNum").text("Wins: " + wins);
-      // totalScore = 0;
-      // $(".current_score").text("Current Score: " + totalScore);
       $(".message_round").text("You won! Press reset game to play again");
-      $(".reset_button").show();
-      //crystals_reset();
+      $(".reset_button").show(); //option to reset game
     }
     if (total > goal) {
+      //losing condition
       $(".current_score").text("Current Score: " + totalScore);
-      $(".message").text("You lose :(");
+      $(".message").text("You lose :("); //display losing message
       losses = losses + 1;
       $(".lossesNum").text("Losses: " + losses);
-      // totalScore = 0;
-      // $(".current_score").text("Current Score: " + totalScore);
       $(".message_round").text("You lost! Press reset game to try again");
-      $(".reset_button").show();
-      //crystals_reset();
+      $(".reset_button").show(); //option to reset game
     }
   }
-
+  //status: game starts
+  //assign initial point value to each crystal at the start of the game
   $("#crystal_1").attr("point", crystals.crystal1);
   $("#crystal_2").attr("point", crystals.crystal2);
   $("#crystal_3").attr("point", crystals.crystal3);
   $("#crystal_4").attr("point", crystals.crystal4);
 
-  //status: game starts
   //Initial conditions:
-  $(".reset_button").hide();
+  $(".reset_button").hide(); //hide reset button
   $(".current_score").text("Current Score: " + totalScore);
   $(".winsNum").text("Wins: " + wins);
   $(".lossesNum").text("Losses: " + losses);
   $(".message").text("Wins/Losses");
-  goal_gen(18, 120);
+  goal_gen(18, 120); //generate goal of game at the start of the game
   console.log(scoreGoal);
-  //points_gen(1, 12);
 
+  //click function that starts when player presses crystal button
   $(".crystal_btn").on("click", function() {
     $(".reset_button").hide();
     $(".message_round").text("Game in progress");
-    points_gen(1, 12);
-    var score_crystal = $(this).attr("point");
+    //points_gen(1, 12);
+    var score_crystal = $(this).attr("point"); //stores amount of points for crystal clicked
 
-    totalScore = totalScore + parseInt(score_crystal);
+    totalScore = totalScore + parseInt(score_crystal); //add number of points to current score
 
     $(".current_score").text("Current Score: " + totalScore);
 
-    game_status(totalScore, scoreGoal);
+    game_status(totalScore, scoreGoal); //check current status of game
   });
 });
