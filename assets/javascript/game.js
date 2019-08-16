@@ -64,6 +64,7 @@ $(document).ready(function() {
       // totalScore = 0;
       // $(".current_score").text("Current Score: " + totalScore);
       $(".message_round").text("You won! Press reset game to play again");
+      $(".reset_button").show();
       //crystals_reset();
     }
     if (total > goal) {
@@ -74,6 +75,7 @@ $(document).ready(function() {
       // totalScore = 0;
       // $(".current_score").text("Current Score: " + totalScore);
       $(".message_round").text("You lost! Press reset game to try again");
+      $(".reset_button").show();
       //crystals_reset();
     }
   }
@@ -85,6 +87,7 @@ $(document).ready(function() {
 
   //status: game starts
   //Initial conditions:
+  $(".reset_button").hide();
   $(".current_score").text("Current Score: " + totalScore);
   $(".winsNum").text("Wins: " + wins);
   $(".lossesNum").text("Losses: " + losses);
@@ -94,6 +97,7 @@ $(document).ready(function() {
   //points_gen(1, 12);
 
   $(".crystal_btn").on("click", function() {
+    $(".reset_button").hide();
     $(".message_round").text("Game in progress");
     points_gen(1, 12);
     var score_crystal = $(this).attr("point");
