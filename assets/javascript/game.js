@@ -5,6 +5,7 @@ $(document).ready(function() {
   let totalScore = 0; //score of player in current round
   let wins = 0;
   let losses = 0;
+  let gameEnd = false;
 
   //object that stores number of points for each crystal
   let crystals = {
@@ -50,6 +51,7 @@ $(document).ready(function() {
     totalScore = 0; //resets score
     $(".current_score").text("Current Score: " + totalScore);
     crystals_reset(); //resets game parameters
+    gameEnd = false;
     $(".reset_button").hide(); //hides reset button
   });
 
@@ -63,6 +65,11 @@ $(document).ready(function() {
       $(".winsNum").text("Wins: " + wins);
       $(".message_round").text("You won! Press reset game to play again");
       $(".reset_button").show(); //option to reset game
+      $("#crystal_1").attr("point", " ");
+      $("#crystal_2").attr("point", " ");
+      $("#crystal_3").attr("point", " ");
+      $("#crystal_4").attr("point", " ");
+      gameEnd = true;
     }
     if (total > goal) {
       //losing condition
@@ -72,6 +79,11 @@ $(document).ready(function() {
       $(".lossesNum").text("Losses: " + losses);
       $(".message_round").text("You lost! Press reset game to try again");
       $(".reset_button").show(); //option to reset game
+      $("#crystal_1").attr("point", " ");
+      $("#crystal_2").attr("point", " ");
+      $("#crystal_3").attr("point", " ");
+      $("#crystal_4").attr("point", " ");
+      gameEnd = true;
     }
   }
   //status: game starts
@@ -92,7 +104,7 @@ $(document).ready(function() {
 
   //click function that starts when player presses crystal button
   $(".crystal_btn").on("click", function() {
-    $(".reset_button").hide();
+    gameEnd ? $(".reset_button").show() : $(".reset_button").hide();
     $(".message_round").text("Game in progress");
     //points_gen(1, 12);
     var score_crystal = $(this).attr("point"); //stores amount of points for crystal clicked
