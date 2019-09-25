@@ -46,7 +46,7 @@ $(document).ready(function() {
 
   //click function related to button that resets game
   $(".reset_button").on("click", function next_round() {
-    $(".message_round").text(""); //empties current game message
+    //$(".message_round").text(""); //empties current game message
     goal_gen(18, 120); //generates new goal
     totalScore = 0; //resets score
     $(".current_score").text("Current Score: " + totalScore);
